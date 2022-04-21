@@ -13,17 +13,16 @@ connection.once('open', async () => {})
 const getDevicesList = async () => {
   const collection = connection.db.collection('location')
   let r = await collection.find({ _id: new mongoose.Types.ObjectId(LOCATION_ID) }).toArray()
-  let deviceList=[];
-  if (r.length){
-    if (r[0].sensors.length){
-      for (let i=0;i<r[0].sensors.length;i++){
-        let d=await getDeviceById(r[0].sensors[i]);
-        if (d)
-          deviceList.push(d);
+  let deviceList = []
+  if (r.length) {
+    if (r[0].sensors.length) {
+      for (let i = 0; i < r[0].sensors.length; i++) {
+        let d = await getDeviceById(r[0].sensors[i])
+        if (d) deviceList.push(d)
       }
     }
   }
-  return deviceList;
+  return deviceList
 }
 
 const getDeviceById = async deviceId => {

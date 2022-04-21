@@ -47,17 +47,17 @@ app.get('/health', async (req, res) => {
 //main post listener
 app.post('/', async (req, res) => {
   let json = req.body
-  let deviceList = await getDevicesList();
+  let deviceList = await getDevicesList()
   const piscina = new Piscina({
-    filename: path.resolve(__dirname, 'worker.js')
-  });
-  deviceList.forEach(device=>{    
-    piscina.run(device);
-  });  
+    filename: path.resolve(__dirname, 'worker.js'),
+  })
+  deviceList.forEach(device => {
+    piscina.run(device)
+  })
   return res.status(200).json({
     status: true,
     data: null,
-    message:`${deviceList.length} devices sent for processing schedule plans`
+    message: `${deviceList.length} devices sent for processing schedule plans`,
   })
 })
 
