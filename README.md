@@ -1,2 +1,74 @@
-# scheduler
-Module for parsing scheduler plans and passing them to other modules down the pipeline if timeframe matches
+# Scheduler
+
+|                |                            |
+| -------------- | -------------------------- |
+| Name           | Scheduler                  |
+| Version        | v1.0.0                     |
+| Dockerhub Link | [weevenetwork/scheduler]() |
+| Authors        | Mesud Pasic                |
+
+- [MQTT Ingress](#scheduler)
+  - [Description](#description)
+  - [Features](#features)
+  - [Environment Variables](#environment-variables)
+    - [Module Specific](#module-specific)
+    - [Set by the weeve Agent on the edge-node](#set-by-the-weeve-agent-on-the-edge-node)
+  - [Dependencies](#dependencies)
+
+## Description
+
+Scheduler module.
+
+## Features
+
+- Parsing scheduled plans for devices to change temperature based on a timesheet
+
+## Environment Variables
+
+- HOST_NAME
+- HOST_PORT
+- MELITA_API_URL
+- ENCODER_SERVICE_URL
+- MONGO_DB_URL
+- MONGO_DB_NAME
+- MONGO_DB_USERNAME
+- MONGO_DB_PASSWORD
+- LOCATION_ID
+- TRANSLATION_SERVICE_URL
+- MANUFACTURER_NAME
+- MANUFACTURER_DEVICE_TYPE
+
+
+### Module Specific
+
+### Set by the weeve Agent on the edge-node
+
+| Environment Variables | type | Description |
+| --- | --- | --- |
+| MODULE_NAME | string | Name of the module |
+| HOST_NAME | string | Host where app is running |
+| HOST_PORT | string | Port where app is running |
+| MELITA_API_URL | string | Melita API service for sending commands to devices |
+| ENCODER_SERVICE_URL | string | Encoder service URL for encoding commands for device |
+| MONGO_DB_URL | string | MongoDB URL endpoint |
+| MONGO_DB_NAME | string | MongoDB database name |
+| MONGO_DB_USERNAME | string | MongoDB username |
+| MONGO_DB_PASSWORD | string | MongoDB password |
+| LOCATION_ID | string | ID of location for specific building |
+| TRANSLATION_SERVICE_URL | string | Translation service URL for trnaslating commands |
+| MANUFACTURER_NAME | string | Manufacturer name of devices used with scheduler |
+| MANUFACTURER_DEVICE_TYPE | string | Device type used with scheduler (vicki thermostat for example) |
+
+
+## Dependencies
+
+```js
+"dependencies": {
+    "body-parser": "^1.19.2",
+    "express": "^4.17.3",
+    "express-winston": "^4.2.0",
+    "node-fetch": "^2.6.1",
+    "winston": "^3.6.0",
+	"piscina": "^3.2.0",
+}
+```

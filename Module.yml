@@ -1,0 +1,95 @@
+version: 1.0.0
+name: Scheduler module
+description: Module for processing scheduled plans for devices
+icon: https://icons-020-demo.s3.eu-central-1.amazonaws.com/mi_calendar_process.png
+type: input
+tags:
+  - Sheduler
+categories:
+  - id: category
+    name: process
+image:
+  name: weevenetwork/scheduler
+  tag: latest
+environments:
+  - key: HOST_NAME
+    description: Host name/address where the server will run.
+    value: ''
+    default: 0.0.0.0
+    type: string
+    name: Host Name
+  - key: HOST_PORT
+    description: Port on which the server will run.
+    value: ''
+    default: 80
+    type: integer
+    name: Port
+  - key: MELITA_API_URL
+    description: URL to pass the result to
+    value: ''
+    default:
+    type: string
+    name: Melita URL
+  - key: ENCODER_SERVICE_URL
+    description: URL for encoding command to device specific
+    value: ''
+    default:
+    type: string
+    name: Encoder URL
+  - key:  MONGO_DB_URL
+    description: Mongo DB URL endpoint
+    value: ''
+    default:
+    type: string
+    name: Mongo DB URL
+  - key:  MONGO_DB_NAME
+    description: Name of the Mongo database
+    value: ''
+    default:
+    type: string
+    name: Mongo DB name
+  - key:  MONGO_DB_USERNAME
+    description: Mongo DB username
+    value: ''
+    default:
+    type: string
+    name: Mongo DB username
+  - key:  MONGO_DB_PASSWORD
+    description: Mongo DB password
+    value: ''
+    default:
+    type: string
+    name: Mongo DB password
+  - key: LOCATION_ID
+    description: Location ID for the devices assigned to the location
+    value: ''
+    default: ''
+    type: string
+    name: Location ID
+  - TRANSLATION_SERVICE_URL
+    description: URL of the service for command translation
+    value: ''
+    default: ''
+    type: string
+    name: Translation service URL
+  - MANUFACTURER_NAME
+    description: Name of the manufacturer for translation service
+    value: ''
+    default: ''
+    type: string
+    name: Manufacturer name
+  - MANUFACTURER_DEVICE_TYPE
+    description: Device type of the manufacturer
+    value: ''
+    default: ''
+    type: string
+    name: Device type
+commands: []
+document:
+  ports: []
+  volumes: []
+  restart_policy:
+    condition: on-failure
+    delay: 10s
+    max_attempts: 3
+    window: 120s

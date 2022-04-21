@@ -1,0 +1,10 @@
+version: '1'
+services:
+  scheduler_service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      MODULE_NAME: scheduler_service
+      HOST_NAME: 127.0.0.1
+      HOST_PORT: 80
