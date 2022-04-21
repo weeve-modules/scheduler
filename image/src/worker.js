@@ -93,9 +93,11 @@ module.exports = async device => {
     // go through the slots
     let day = new Date().getDay() - 1
     let keys = Object.keys(device.schedule)
-    keys.forEach(key => {
+    keys.forEach(async key => {
       if (device.schedule[key].days.indexOf(day) != -1) {
-        device.schedule[key].slots.forEach(async slot => {
+        let slot_keys = Object.keys(device.schedule[key].slots)
+        for (let i = 0; i < slot_keys.length; i++) {
+          let slot = device.schedule[key].slots[slot_keys[i]]
           let fromDate = new Date(slot.time)
           if (fromDate >= Date.now()) {
             let deviceCommand = await translateCommand(slot.command)
@@ -113,8 +115,10 @@ module.exports = async device => {
             } else {
               console.log(`Failed translating command 'manualTemperature' for device ${device._id}`)
             }
+            //only first time scheduler that fits the time
+            break
           }
-        })
+        }
       }
     })
   }
