@@ -1,8 +1,8 @@
 const env = require('../utils/env')
 
 module.exports = {
-  HOST_NAME: env('HOST_NAME', '127.0.0.1'),
-  HOST_PORT: env('HOST_PORT', '8080'),
+  INGRESS_HOST: env('INGRESS_HOST', '127.0.0.1'),
+  INGRESS_PORT: env('INGRESS_PORT', '8080'),
   MODULE_NAME: env('MODULE_NAME', 'Scheduler'),
   MELITA_API_URL: env('MELITA_API_URL', ''),
   ENCODER_SERVICE_URL: env('ENCODER_SERVICE_URL', ''),

@@ -1,3 +1,4 @@
+const { isRedirect } = require('node-fetch')
 const {
   TRANSLATION_SERVICE_URL,
   MANUFACTURER_NAME,
@@ -46,6 +47,16 @@ const sendCommand = async (deviceEUI, data) => {
   } else return false
 }
 
+const isTimeReady =(start,end)=>{
+  start=start.toTimeString().slice(0,8);
+  end=end.toTimeString().slice(0,8);
+  var regExp = /(\d{1,2})\:(\d{1,2})\:(\d{1,2})/;
+  if(parseInt(end.replace(regExp, "$1$2$3")) >= parseInt(start.replace(regExp, "$1$2$3")))
+    return true;
+  else
+    return false;
+}
+
 const encodeCommand = async command => {
   let res = await fetch(ENCODER_SERVICE_URL, {
     method: 'POST',
@@ -62,16 +73,12 @@ const encodeCommand = async command => {
 }
 module.exports = async device => {
   // check first for manualTemperature
-  if (device.manualTemperature) {
-    let until = new Date(device.manualTemperature.until)
-    if (until.getTime() >= Date.now()) {
+  if (typeof device.manualTemperature.command !=='undefined') {
+    let until = new Date(device.manualTemperature.command.params.until)
+    if (isTimeReady(Date.now(),until.getTime())) {
       // execute it, this is missing from device JSON structure, need to inform thinkmoto
-      let command = {
-        name: 'setTemperatur',
-        params: {
-          value: device.manualTemperature.value,
-        },
-      }
+      let command = device.manualTemperature.command;
+      delete command.params['until'];
       let deviceCommand = await translateCommand(command)
 
       if (deviceCommand !== false) {
@@ -99,7 +106,8 @@ module.exports = async device => {
         for (let i = 0; i < slot_keys.length; i++) {
           let slot = device.schedule[key].slots[slot_keys[i]]
           let fromDate = new Date(slot.time)
-          if (fromDate >= Date.now()) {
+          if (isTimeReady(Date.now(),fromDate.getTime())) {
+            console.log(`${device.EUI} has command ready ${JSON.stringify(slot.command)} for timeframe: ${fromDate.toTimeString()}`);
             let deviceCommand = await translateCommand(slot.command)
             if (deviceCommand !== false) {
               // needs call to encoder
