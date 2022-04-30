@@ -3,8 +3,8 @@ const {
   TRANSLATION_SERVICE_URL,
   MANUFACTURER_NAME,
   MANUFACTURER_DEVICE_TYPE,
-  MELITA_API_URL,
-  ENCODER_SERVICE_URL,
+  EGRESS_URL,
+  COMMAND_NAME,
 } = require('./config/config')
 
 const translateCommand = async command => {
@@ -26,36 +26,22 @@ const translateCommand = async command => {
   } else return false
 }
 
-const encodeCommand = async payload => {
-  let res = await fetch(ENCODER_SERVICE_URL, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      command: payload.command,
-    }),
-  })
-  if (res.ok) {
-    let json = await res.json()
-    return json.data
-  } else return false
-}
-
-const sendCommand = async (deviceEUI, data) => {
+const sendCommand = async (deviceEUI, command) => {
   let payload = {
     command: {
-      name: 'addDownlinkDeviceQueue',
+      name: COMMAND_NAME,
       deviceEUI: deviceEUI,
       params: {
         confirmed: true,
-        data: data,
+        data:{
+          command
+        },
         devEUI: deviceEUI,
         fPort: 1,
       },
     },
   }
-  let res = await fetch(MELITA_API_URL, {
+  let res = await fetch(EGRESS_URL, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -91,14 +77,11 @@ module.exports = async device => {
 
       if (deviceCommand !== false) {
         // needs call to encoder
-        let data = await encodeCommand(deviceCommand)
-        if (data !== false) {
-          let call = await sendCommand(device.EUI, data)
-          if (!call.ok) {
-            console.log(`Failed sending command to device device ${device._id}`)
-          }
+        let res = await sendCommand(device.EUI, deviceCommand.command)
+        if (res === false) {
+          console.log(`Failed sending command to device ${device.EUI}`)
         } else {
-          console.log(`Failed encoding command for device ${device._id}, command ${deviceCommand}`)
+          console.log(`Command successfully sent to device ${device.EUI}, command ${JSON.stringify(deviceCommand.command)}`)
         }
       } else {
         console.log(`Failed translating command 'manualTemperature' for device ${device._id}`)
@@ -129,17 +112,11 @@ module.exports = async device => {
               )} for timeframe: ${untilDate.toTimeString()}`
             )
             if (deviceCommand !== false) {
-              // needs call to encoder
-              let data = await encodeCommand(deviceCommand)
-              if (data !== false) {
-                let call = await sendCommand(device.EUI, data)
-                if (!call) {
-                  console.log(`Failed sending command to device ${device.EUI}`)
-                } else {
-                  console.log(`Command successfully sent to device ${device.EUI}`)
-                }
+              let res = await sendCommand(device.EUI, deviceCommand.command)
+              if (res === false) {
+                console.log(`Failed sending command to device ${device.EUI}`)
               } else {
-                console.log(`Failed encoding command for device ${device.EUI}, command ${deviceCommand}`)
+                console.log(`Command successfully sent to device ${device.EUI}, command ${JSON.stringify(deviceCommand.command)}`)
               }
             } else {
               console.log(`Failed translating command ${JSON.stringify(slot.command)} for device ${device.EUI}`)

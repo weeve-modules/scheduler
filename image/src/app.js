@@ -1,4 +1,4 @@
-const { EGRESS_URL, INGRESS_HOST, INGRESS_PORT, MODULE_NAME } = require('./config/config.js')
+const { INGRESS_HOST, INGRESS_PORT, MODULE_NAME } = require('./config/config.js')
 const fetch = require('node-fetch')
 const express = require('express')
 const bodyParser = require('body-parser')
@@ -46,7 +46,6 @@ app.get('/health', async (req, res) => {
 })
 //main post listener
 app.post('/', async (req, res) => {
-  let json = req.body
   let deviceList = await getDevicesList()
   const piscina = new Piscina({
     filename: path.resolve(__dirname, 'worker.js'),

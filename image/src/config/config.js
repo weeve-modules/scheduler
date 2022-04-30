@@ -12,6 +12,6 @@ module.exports = {
   MANUFACTURER_NAME: env('MANUFACTURER_NAME', 'mcclimate'),
   MANUFACTURER_DEVICE_TYPE: env('MANUFACTURER_DEVICE_TYPE', 'vickithermostat'),
   TRANSLATION_SERVICE_URL: env('TRANSLATION_SERVICE_URL', 'http://localhost:8081'),
-  ENCODER_SERVICE_URL: env('ENCODER_SERVICE_URL', 'http://localhost:8082'),
-  MELITA_API_URL: env('MELITA_API_URL', 'http://localhost:8083'),
+  EGRESS_URL: env('EGRESS_URL', 'http://localhost:8082'),
+  COMMAND_NAME: env('COMMAND_NAME', 'addDownlinkDeviceQueue'),
 }

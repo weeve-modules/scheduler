@@ -1,6 +1,6 @@
 version: 1.0.0
-name: Scheduler module
-description: Module for processing scheduled plans for devices
+name: Scheduler
+description: Module for processing scheduled plans for thermostat devices
 icon: https://icons-020-demo.s3.eu-central-1.amazonaws.com/mi_calendar_process.png
 type: process
 tags:
@@ -24,18 +24,6 @@ environments:
     default: 80
     type: integer
     name: Port
-  - key: MELITA_API_URL
-    description: URL to pass the result to
-    value: ''
-    default:
-    type: string
-    name: Melita URL
-  - key: ENCODER_SERVICE_URL
-    description: URL for encoding command to device specific
-    value: ''
-    default:
-    type: string
-    name: Encoder URL
   - key:  MONGO_DB_URL
     description: Mongo DB URL endpoint
     value: ''
@@ -84,6 +72,12 @@ environments:
     default: ''
     type: string
     name: Device type
+  - COMMAND_NAME
+    description: Device command for execution
+    value: ''
+    default: 'addDownlinkDeviceQueue'
+    type: string
+    name: Device command to execute
 commands: []
 document:
   ports: []

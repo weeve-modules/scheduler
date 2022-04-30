@@ -7,7 +7,7 @@
 | Dockerhub Link | [weevenetwork/scheduler]() |
 | Authors        | Mesud Pasic                |
 
-- [MQTT Ingress](#scheduler)
+- [Scheduler](#scheduler)
   - [Description](#description)
   - [Features](#features)
   - [Environment Variables](#environment-variables)
@@ -27,8 +27,6 @@ Scheduler module.
 
 - INGRESS_HOST
 - INGRESS_PORT
-- MELITA_API_URL
-- ENCODER_SERVICE_URL
 - MONGO_DB_URL
 - MONGO_DB_NAME
 - MONGO_DB_USERNAME
@@ -37,25 +35,25 @@ Scheduler module.
 - TRANSLATION_SERVICE_URL
 - MANUFACTURER_NAME
 - MANUFACTURER_DEVICE_TYPE
+- COMMAND_NAME
 
 ### Module Specific
 
 ### Set by the weeve Agent on the edge-node
 
-| Environment Variables    | type   | Description                                                    |
-| ------------------------ | ------ | -------------------------------------------------------------- |
-| MODULE_NAME              | string | Name of the module                                             |
-| INGRESS_HOST             | string | Host where app is running                                      |
-| INGRESS_PORT             | string | Port where app is running                                      |
-| MELITA_API_URL           | string | Melita API service for sending commands to devices             |
-| ENCODER_SERVICE_URL      | string | Encoder service URL for encoding commands for device           |
-| MONGO_DB_URL             | string | MongoDB URL endpoint                                           |
-| MONGO_DB_NAME            | string | MongoDB database name                                          |
-| MONGO_DB_USERNAME        | string | MongoDB username                                               |
-| MONGO_DB_PASSWORD        | string | MongoDB password                                               |
-| LOCATION_ID              | string | ID of location for specific building                           |
-| TRANSLATION_SERVICE_URL  | string | Translation service URL for trnaslating commands               |
-| MANUFACTURER_NAME        | string | Manufacturer name of devices used with scheduler               |
+| Environment Variables | type | Description |
+| --- | --- | --- |
+| MODULE_NAME | string | Name of the module |
+| INGRESS_HOST | string | Host where app is running |
+| INGRESS_PORT | string | Port where app is running |
+| MONGO_DB_URL | string | MongoDB URL endpoint |
+| MONGO_DB_NAME | string | MongoDB database name |
+| MONGO_DB_USERNAME | string | MongoDB username |
+| MONGO_DB_PASSWORD | string | MongoDB password |
+| LOCATION_ID | string | ID of location for specific building |
+| COMMAND_NAME | string | Command name that will be passed to egress service for current device environment |
+| TRANSLATION_SERVICE_URL | string | Translation service URL for trnaslating commands |
+| MANUFACTURER_NAME | string | Manufacturer name of devices used with scheduler |
 | MANUFACTURER_DEVICE_TYPE | string | Device type used with scheduler (vicki thermostat for example) |
 
 ## Dependencies

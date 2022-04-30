@@ -5,6 +5,6 @@ services:
       context: .
       dockerfile: Dockerfile
     environment:
-      MODULE_NAME: scheduler_service
+      MODULE_NAME: scheduler
       INGRESS_HOST: 127.0.0.1
       INGRESS_PORT: 80
