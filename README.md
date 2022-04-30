@@ -45,8 +45,8 @@ Scheduler module.
 | Environment Variables    | type   | Description                                                    |
 | ------------------------ | ------ | -------------------------------------------------------------- |
 | MODULE_NAME              | string | Name of the module                                             |
-| INGRESS_HOST                | string | Host where app is running                                      |
-| INGRESS_PORT                | string | Port where app is running                                      |
+| INGRESS_HOST             | string | Host where app is running                                      |
+| INGRESS_PORT             | string | Port where app is running                                      |
 | MELITA_API_URL           | string | Melita API service for sending commands to devices             |
 | ENCODER_SERVICE_URL      | string | Encoder service URL for encoding commands for device           |
 | MONGO_DB_URL             | string | MongoDB URL endpoint                                           |
