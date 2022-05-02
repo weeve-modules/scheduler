@@ -7,23 +7,11 @@ tags:
   - Sheduler
 categories:
   - id: category
-    name: process
+    name: Policies
 image:
   name: weevenetwork/scheduler
   tag: latest
 environments:
-  - key: INGRESS_HOST
-    description: Host name/address where the server will run.
-    value: ''
-    default: 0.0.0.0
-    type: string
-    name: Host Name
-  - key: INGRESS_PORT
-    description: Port on which the server will run.
-    value: ''
-    default: 80
-    type: integer
-    name: Port
   - key:  MONGO_DB_URL
     description: Mongo DB URL endpoint
     value: ''
@@ -54,25 +42,25 @@ environments:
     default: ''
     type: string
     name: Location ID
-  - TRANSLATION_SERVICE_URL
+  - key: TRANSLATION_SERVICE_URL
     description: URL of the service for command translation
     value: ''
     default: ''
     type: string
     name: Translation service URL
-  - MANUFACTURER_NAME
+  - key: MANUFACTURER_NAME
     description: Name of the manufacturer for translation service
     value: ''
     default: ''
     type: string
     name: Manufacturer name
-  - MANUFACTURER_DEVICE_TYPE
+  - key: MANUFACTURER_DEVICE_TYPE
     description: Device type of the manufacturer
     value: ''
     default: ''
     type: string
     name: Device type
-  - COMMAND_NAME
+  - key: COMMAND_NAME
     description: Device command for execution
     value: ''
     default: 'addDownlinkDeviceQueue'
