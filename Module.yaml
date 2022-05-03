@@ -1,0 +1,77 @@
+version: 1.0.0
+name: Scheduler
+description: Module for processing scheduled plans for thermostat devices
+icon: https://icons-020-demo.s3.eu-central-1.amazonaws.com/mi_calendar_process.png
+type: process
+tags:
+  - Sheduler
+categories:
+  - id: category
+    name: Policies
+image:
+  name: weevenetwork/scheduler
+  tag: latest
+environments:
+  - key:  MONGO_DB_URL
+    description: Mongo DB URL endpoint
+    value: ''
+    default:
+    type: string
+    name: Mongo DB URL
+  - key:  MONGO_DB_NAME
+    description: Name of the Mongo database
+    value: ''
+    default:
+    type: string
+    name: Mongo DB name
+  - key:  MONGO_DB_USERNAME
+    description: Mongo DB username
+    value: ''
+    default:
+    type: string
+    name: Mongo DB username
+  - key:  MONGO_DB_PASSWORD
+    description: Mongo DB password
+    value: ''
+    default:
+    type: string
+    name: Mongo DB password
+  - key: LOCATION_ID
+    description: Location ID for the devices assigned to the location
+    value: ''
+    default: ''
+    type: string
+    name: Location ID
+  - key: TRANSLATION_SERVICE_URL
+    description: URL of the service for command translation
+    value: ''
+    default: ''
+    type: string
+    name: Translation service URL
+  - key: MANUFACTURER_NAME
+    description: Name of the manufacturer for translation service
+    value: ''
+    default: ''
+    type: string
+    name: Manufacturer name
+  - key: MANUFACTURER_DEVICE_TYPE
+    description: Device type of the manufacturer
+    value: ''
+    default: ''
+    type: string
+    name: Device type
+  - key: COMMAND_NAME
+    description: Device command for execution
+    value: ''
+    default: 'addDownlinkDeviceQueue'
+    type: string
+    name: Device command to execute
+commands: []
+document:
+  ports: []
+  volumes: []
+  restart_policy:
+    condition: on-failure
+    delay: 10s
+    max_attempts: 3
+    window: 120s
