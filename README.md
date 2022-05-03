@@ -4,7 +4,7 @@
 | -------------- | -------------------------- |
 | Name           | Scheduler                  |
 | Version        | v1.0.0                     |
-| Dockerhub Link | [weevenetwork/scheduler]() |
+| Dockerhub Link | [weevenetwork/scheduler](https://hub.docker.com/r/weevenetwork/scheduler) |
 | Authors        | Mesud Pasic                |
 
 - [Scheduler](#scheduler)
@@ -17,7 +17,7 @@
 
 ## Description
 
-Scheduler module.
+Scheduler runs periodically and checks for each devices if command needs to be executed based on a timeframe.
 
 ## Features
 
