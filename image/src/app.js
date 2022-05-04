@@ -11,17 +11,7 @@ const path = require('path')
 
 //initialization
 app.use(express.urlencoded({ extended: true }))
-app.use(
-  express.json({
-    verify: (req, res, buf, encoding) => {
-      try {
-        JSON.parse(buf)
-      } catch (e) {
-        res.status(400).json({ status: false, message: 'Invalid payload provided.' })
-      }
-    },
-  })
-)
+app.use(express.json())
 
 //logger
 app.use(
