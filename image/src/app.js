@@ -1,7 +1,6 @@
 const { INGRESS_HOST, INGRESS_PORT, MODULE_NAME } = require('./config/config.js')
 const fetch = require('node-fetch')
 const express = require('express')
-const bodyParser = require('body-parser')
 const app = express()
 const winston = require('winston')
 const expressWinston = require('express-winston')
@@ -11,8 +10,8 @@ const Piscina = require('piscina')
 const path = require('path')
 
 //initialization
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(bodyParser.json())
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
 
 //logger
 app.use(
