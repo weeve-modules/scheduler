@@ -30,13 +30,13 @@ const sendCommand = async (deviceEUI, command) => {
   let payload = {
     command: {
       name: COMMAND_NAME,
-      deviceEUI: deviceEUI,
+      deviceEUI: deviceEUI.toLowerCase(),
       params: {
         confirmed: true,
-        data:{
-          command
+        data: {
+          command,
         },
-        devEUI: deviceEUI,
+        devEUI: deviceEUI.toLowerCase(),
         fPort: 1,
       },
     },
@@ -81,7 +81,9 @@ module.exports = async device => {
         if (res === false) {
           console.log(`Failed sending command to device ${device.EUI}`)
         } else {
-          console.log(`Command successfully sent to device ${device.EUI}, command ${JSON.stringify(deviceCommand.command)}`)
+          console.log(
+            `Command successfully sent to device ${device.EUI}, command ${JSON.stringify(deviceCommand.command)}`
+          )
         }
       } else {
         console.log(`Failed translating command 'manualTemperature' for device ${device._id}`)
@@ -116,7 +118,9 @@ module.exports = async device => {
               if (res === false) {
                 console.log(`Failed sending command to device ${device.EUI}`)
               } else {
-                console.log(`Command successfully sent to device ${device.EUI}, command ${JSON.stringify(deviceCommand.command)}`)
+                console.log(
+                  `Command successfully sent to device ${device.EUI}, command ${JSON.stringify(deviceCommand.command)}`
+                )
               }
             } else {
               console.log(`Failed translating command ${JSON.stringify(slot.command)} for device ${device.EUI}`)

@@ -12,30 +12,12 @@ image:
   name: weevenetwork/scheduler
   tag: latest
 environments:
-  - key:  MONGO_DB_URL
-    description: Mongo DB URL endpoint
+  - key:  MONGO_DEVICE_ENDPOINT
+    description: Mongo API endpoint for fetching device list by location
     value: ''
     default:
     type: string
-    name: Mongo DB URL
-  - key:  MONGO_DB_NAME
-    description: Name of the Mongo database
-    value: ''
-    default:
-    type: string
-    name: Mongo DB name
-  - key:  MONGO_DB_USERNAME
-    description: Mongo DB username
-    value: ''
-    default:
-    type: string
-    name: Mongo DB username
-  - key:  MONGO_DB_PASSWORD
-    description: Mongo DB password
-    value: ''
-    default:
-    type: string
-    name: Mongo DB password
+    name: Mongo Device URL
   - key: LOCATION_ID
     description: Location ID for the devices assigned to the location
     value: ''
