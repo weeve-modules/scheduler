@@ -30,13 +30,13 @@ const sendCommand = async (deviceEUI, command) => {
   let payload = {
     command: {
       name: COMMAND_NAME,
-      deviceEUI: deviceEUI.toLowerCase(),
+      deviceEUI: deviceEUI,
       params: {
         confirmed: true,
         data: {
           command,
         },
-        devEUI: deviceEUI.toLowerCase(),
+        devEUI: deviceEUI,
         fPort: 1,
       },
     },
