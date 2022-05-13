@@ -45,6 +45,9 @@ app.get('/health', async (req, res) => {
 //main post listener
 app.post('/', async (req, res) => {
   let deviceList = await getDevicesList()
+  if (deviceList==null){
+    return res.status(400).json({ status: false, message: 'Cannot fetch device list.' })
+  }
   const piscina = new Piscina({
     filename: path.resolve(__dirname, 'worker.js'),
   })
