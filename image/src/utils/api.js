@@ -1,19 +1,33 @@
-const { LOCATION_ID, MONGO_DEVICE_ENDPOINT } = require('../config/config')
+const { LOCATION_ID, DB_REST_API } = require('../config/config')
 const fetch = require('node-fetch')
 
-const getDevicesList = async () => {
-  const res = await fetch(MONGO_DEVICE_ENDPOINT, {
-    method: 'POST',
+const getDevicesList = async locationId => {
+  const res = await fetch(`${DB_REST_API}/devices/${locationId}`, {
+    method: 'GET',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({
-      location: LOCATION_ID,
-    }),
   })
   if (res.ok) {
     let json = await res.json()
-    return json.data
+    if (json.status) return json.data
+    else return null
+  } else {
+    return null
+  }
+}
+
+const getLocations = async () => {
+  const res = await fetch(`${DB_REST_API}/locations`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+  if (res.ok) {
+    let json = await res.json()
+    if (json.status) return json.data
+    else return null
   } else {
     return null
   }
@@ -21,4 +35,5 @@ const getDevicesList = async () => {
 
 module.exports = {
   getDevicesList,
+  getLocations,
 }

@@ -27,7 +27,7 @@ Scheduler runs periodically and checks for each devices if command needs to be e
 
 | Environment Variables | type | Description |
 | --- | --- | --- |
-| MONGO_DEVICE_ENDPOINT | string | Mongo API endpoint for fetching device list by location |
+| DB_REST_API | string | DB REST API for fetching devices and locations |
 | LOCATION_ID | string | ID of location for specific building |
 | COMMAND_NAME | string | Command name that will be passed to egress service for current device environment |
 | TRANSLATION_SERVICE_URL | string | Translation service URL for trnaslating commands |

@@ -12,8 +12,8 @@ image:
   name: weevenetwork/scheduler
   tag: latest
 environments:
-  - key:  MONGO_DEVICE_ENDPOINT
-    description: Mongo API endpoint for fetching device list by location
+  - key:  DB_REST_API
+    description: DB REST API for fetching devices and locations
     value: ''
     default:
     type: string
