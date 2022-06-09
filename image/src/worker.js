@@ -67,7 +67,7 @@ module.exports = async device => {
   let manualSetup = false
   if (typeof device.manualTemperature.command !== 'undefined') {
     let until = new Date(device.manualTemperature.command.params.until)
-    if (until>Date.now()) {
+    if (until > Date.now()) {
       manualSetup = true
       // execute it, this is missing from device JSON structure, need to inform thinkmoto
       console.log('Executing manual override')

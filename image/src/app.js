@@ -1,9 +1,9 @@
-const { INGRESS_HOST, INGRESS_PORT, MODULE_NAME } = require('./config/config.js')
+const { INGRESS_HOST, INGRESS_PORT, MODULE_NAME, LOCATION_ID } = require('./config/config.js')
 const express = require('express')
 const app = express()
 const winston = require('winston')
 const expressWinston = require('express-winston')
-const { getDevicesList } = require('./utils/api')
+const { getDevicesList, getLocations } = require('./utils/api')
 const { formatTimeDiff } = require('./utils/util')
 const Piscina = require('piscina')
 const path = require('path')
@@ -44,8 +44,21 @@ app.get('/health', async (req, res) => {
 })
 //main post listener
 app.post('/', async (req, res) => {
-  let deviceList = await getDevicesList()
-  if (deviceList==null){
+  let deviceList = []
+  if (LOCATION_ID !== '') {
+    deviceList = await getDevicesList(LOCATION_ID)
+  } else {
+    let locations = await getLocations()
+    if (locations) {
+      for (let i = 0; i < locations.length; i++) {
+        let d = await getDevicesList(locations[i])
+        if (d) {
+          deviceList.push(...d)
+        }
+      }
+    }
+  }
+  if (deviceList == null) {
     return res.status(400).json({ status: false, message: 'Cannot fetch device list.' })
   }
   const piscina = new Piscina({
