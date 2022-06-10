@@ -15,7 +15,7 @@ environments:
   - key:  DB_REST_API
     description: DB REST API for fetching devices and locations
     value: ''
-    default:
+    default: ''
     type: string
     name: Mongo Device URL
   - key: LOCATION_ID
