@@ -8,7 +8,7 @@ module.exports = {
   LOCATION_ID: env('LOCATION_ID', ''),
   MANUFACTURER_NAME: env('MANUFACTURER_NAME', 'mcclimate'),
   MANUFACTURER_DEVICE_TYPE: env('MANUFACTURER_DEVICE_TYPE', 'vickithermostat'),
-  TRANSLATION_SERVICE_URL: env('TRANSLATION_SERVICE_URL', 'http://localhost:8082'),
-  EGRESS_URL: env('EGRESS_URL', 'http://localhost:8083'),
+  TRANSLATION_SERVICE_URL: env('TRANSLATION_SERVICE_URL', ''),
+  EGRESS_URL: env('EGRESS_URL', ''),
   COMMAND_NAME: env('COMMAND_NAME', 'addDownlinkDeviceQueue'),
 }

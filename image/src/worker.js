@@ -41,6 +41,7 @@ const sendCommand = async (deviceEUI, command) => {
       },
     },
   }
+  console.log(`Sending ${JSON.stringify(payload)} to ${EGRESS_URL}`);
   let res = await fetch(EGRESS_URL, {
     method: 'POST',
     headers: {
