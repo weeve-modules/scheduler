@@ -1,13 +1,13 @@
-# Scheduler
+# Wohn.io scheduler
 
 |                |                                                                           |
 | -------------- | ------------------------------------------------------------------------- |
-| Name           | Scheduler                                                                 |
+| Name           | Wohn.io scheduler                                                                 |
 | Version        | v1.0.0                                                                    |
 | Dockerhub Link | [weevenetwork/scheduler](https://hub.docker.com/r/weevenetwork/scheduler) |
 | Authors        | Mesud Pasic                                                               |
 
-- [Scheduler](#scheduler)
+- [Wohn.io scheduler](#Wohn.io scheduler)
   - [Description](#description)
   - [Features](#features)
   - [Environment Variables](#environment-variables)
@@ -17,7 +17,7 @@
 
 ## Description
 
-Scheduler runs periodically and checks for each devices if command needs to be executed based on a timeframe.
+Wohn.io scheduler runs periodically and checks for each devices if command needs to be executed based on a timeframe.
 
 ## Features
 

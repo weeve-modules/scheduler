@@ -4,7 +4,7 @@
 # PIPESTATUS with a simple $?, but I don’t do that.
 set -o errexit -o pipefail -o noclobber -o nounset
 
-echo "Entrypoint script for scheduler"
+echo "Entrypoint script for Wohn.io scheduler"
 echo "Container args: $@"
 
 ########################
