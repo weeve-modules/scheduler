@@ -1,4 +1,4 @@
-# Wohn.io scheduler
+# Scheduler
 
 |                |                                                                           |
 | -------------- | ------------------------------------------------------------------------- |
@@ -7,7 +7,7 @@
 | Dockerhub Link | [weevenetwork/scheduler](https://hub.docker.com/r/weevenetwork/scheduler) |
 | Authors        | Mesud Pasic                                                               |
 
-- [Wohn.io scheduler](#Wohn.io scheduler)
+- [Wohn.io scheduler](#Scheduler)
   - [Description](#description)
   - [Features](#features)
   - [Environment Variables](#environment-variables)
