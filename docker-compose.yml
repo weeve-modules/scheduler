@@ -5,7 +5,7 @@ services:
       context: .
       dockerfile: Dockerfile
     environment:
-      MODULE_NAME: scheduler
+      MODULE_NAME: Wohn.io scheduler
       INGRESS_HOST: 127.0.0.1
       INGRESS_PORT: 80
       DB_REST_API: https://api.wohnio.weeve.engineering/devices      
