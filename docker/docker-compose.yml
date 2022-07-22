@@ -1,0 +1,20 @@
+version: "3.0"
+services:
+  scheduler:
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile
+    environment:
+      MODULE_NAME: "Wohn.io scheduler"
+      MODULE_TYPE: "Processing"
+      EGRESS_URLS: "https://testdockercompose.free.beeceptor.com"
+      INGRESS_HOST: "0.0.0.0"
+      INGRESS_PORT: "80"
+      DB_REST_API: 'https://api.wohnio.weeve.engineering/devices'
+      LOCATION_ID: ''
+      COMMAND_NAME: 'addDownlinkDeviceQueue'
+      TRANSLATION_SERVICE_URL: ''
+      MANUFACTURER_NAME: 'mcclimate'
+      MANUFACTURER_DEVICE_TYPE: 'vickithermostat'
+    ports:
+      - 80:80

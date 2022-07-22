@@ -3,7 +3,7 @@ const {
   TRANSLATION_SERVICE_URL,
   MANUFACTURER_NAME,
   MANUFACTURER_DEVICE_TYPE,
-  EGRESS_URL,
+  EGRESS_URLS,
   COMMAND_NAME,
 } = require('./config/config')
 
@@ -41,8 +41,8 @@ const sendCommand = async (deviceEUI, command) => {
       },
     },
   }
-  console.log(`Sending ${JSON.stringify(payload)} to ${EGRESS_URL}`);
-  let res = await fetch(EGRESS_URL, {
+  console.log(`Sending ${JSON.stringify(payload)} to ${EGRESS_URLS}`);
+  let res = await fetch(EGRESS_URLS, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
