@@ -2,7 +2,7 @@
 
 |                |                                                                           |
 | -------------- | ------------------------------------------------------------------------- |
-| Name           | Wohn.io scheduler                                                                 |
+| Name           | Wohn.io scheduler                                                         |
 | Version        | v1.0.0                                                                    |
 | Dockerhub Link | [weevenetwork/scheduler](https://hub.docker.com/r/weevenetwork/scheduler) |
 | Authors        | Mesud Pasic                                                               |

@@ -9,7 +9,7 @@ const getDevicesList = async locationId => {
     },
   })
   if (res.ok) {
-    let json = await res.json()
+    const json = await res.json()
     if (json.status) return json.data
     else return null
   } else {
@@ -25,7 +25,7 @@ const getLocations = async () => {
     },
   })
   if (res.ok) {
-    let json = await res.json()
+    const json = await res.json()
     if (json.status) return json.data
     else return null
   } else {
