@@ -8,11 +8,11 @@ const { formatTimeDiff } = require('./utils/util')
 const Piscina = require('piscina')
 const path = require('path')
 
-//initialization
+// initialization
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
-//logger
+// logger
 app.use(
   expressWinston.logger({
     transports: [
@@ -34,7 +34,7 @@ app.use(
   })
 )
 const startTime = Date.now()
-//health check
+// health check
 app.get('/health', async (req, res) => {
   res.json({
     serverStatus: 'Running',
@@ -42,16 +42,16 @@ app.get('/health', async (req, res) => {
     module: MODULE_NAME,
   })
 })
-//main post listener
+// main post listener
 app.post('/', async (req, res) => {
   let deviceList = []
-  if (LOCATION_ID !== '') {
+  if (LOCATION_ID) {
     deviceList = await getDevicesList(LOCATION_ID)
   } else {
-    let locations = await getLocations()
+    const locations = await getLocations()
     if (locations) {
       for (let i = 0; i < locations.length; i++) {
-        let d = await getDevicesList(locations[i])
+        const d = await getDevicesList(locations[i])
         if (d) {
           deviceList.push(...d)
         }
@@ -74,12 +74,12 @@ app.post('/', async (req, res) => {
   })
 })
 
-//handle exceptions
+// handle exceptions
 app.use(async (err, req, res, next) => {
   if (res.headersSent) {
     return next(err)
   }
-  let errCode = err.status || 401
+  const errCode = err.status || 401
   res.status(errCode).send({
     status: false,
     message: err.message,
