@@ -15,33 +15,45 @@ envs:                                   # Array of environment variables that wi
   - name: Mongo Device URL
     key:  DB_REST_API
     description: DB REST API for fetching devices and locations
-    value: ''    
+    value: ''
     type: 'text'
+    options: []
+    dependencies: []
   - name: Location ID
     key: LOCATION_ID
     description: Location ID for the devices assigned to the location
-    value: ''    
+    value: ''
     type: 'text'
+    options: []
+    dependencies: []
   - name: Translation service URL
     key: TRANSLATION_SERVICE_URL
     description: URL of the service for command translation
-    value: ''    
+    value: ''
     type: 'text'
+    options: []
+    dependencies: []
   - name: Manufacturer name
     key: MANUFACTURER_NAME
     description: Name of the manufacturer for translation service
-    value: ''    
+    value: ''
     type: 'text'
+    options: []
+    dependencies: []
   - name: Device type
     key: MANUFACTURER_DEVICE_TYPE
     description: Device type of the manufacturer
-    value: ''    
+    value: ''
     type: 'text'
+    options: []
+    dependencies: []
   - name: Device command to execute
     key: COMMAND_NAME
     description: Device command for execution
     value: 'addDownlinkDeviceQueue'
-    type: 'text' 
+    type: 'text'
+    options: []
+    dependencies: []
 ports:                                  # Array of ports that will be exposed by the module.
   - container: 8080                     # Port number from the container.
     host: 8080                          # Port number to map on the host.

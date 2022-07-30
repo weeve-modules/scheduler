@@ -4,7 +4,7 @@
 | -------------- | ------------------------------------------------------------------------- |
 | Name           | Wohn.io scheduler                                                         |
 | Version        | v1.0.0                                                                    |
-| Dockerhub Link | [weevenetwork/scheduler](https://hub.docker.com/r/weevenetwork/scheduler) |
+| DockerHub | [weevenetwork/scheduler](https://hub.docker.com/r/weevenetwork/scheduler) |
 | Authors        | Mesud Pasic                                                               |
 
 - [Wohn.io scheduler](#Scheduler)
@@ -41,8 +41,10 @@ Wohn.io scheduler runs periodically and checks for each devices if command needs
 | Environment Variables | type   | Description               |
 | --------------------- | ------ | ------------------------- |
 | MODULE_NAME           | string | Name of the module        |
+| MODULE_TYPE           | string | Type of the module (Input, Processing, Output)    |
 | INGRESS_HOST          | string | Host where app is running |
 | INGRESS_PORT          | string | Port where app is running |
+| EGRESS_URLS           | string | HTTP ReST endpoint for the next module            |
 
 ## Dependencies
 
