@@ -41,9 +41,8 @@ const sendCommand = async (deviceEUI, command) => {
       },
     },
   }
-  const urls = []
   const eUrls = EGRESS_URLS.replace(/ /g, '')
-  urls.push(...eUrls.split(','))
+  const urls = eUrls.split(',')
   urls.forEach(async url => {
     if (url) {
       try {
