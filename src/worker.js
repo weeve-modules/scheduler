@@ -43,25 +43,26 @@ const sendCommand = async (deviceEUI, command) => {
   }
   const urls = []
   const eUrls = EGRESS_URLS.replace(/ /g, '')
-  if (eUrls.indexOf(',') !== -1) {
-    urls.push(...eUrls.split(','))
-  } else {
-    urls.push(eUrls)
-  }
+  urls.push(...eUrls.split(','))
   urls.forEach(async url => {
     if (url) {
-      const res = await fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(payload),
-      })
-      if (res.ok) {
-        const json = await res.json()
-        return json.status
-      } else {
-        console.error(`Error passing response data to ${url}`)
+      try {
+        const callRes = await fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(payload),
+        })
+        if (!callRes.ok) {
+          console.error(`Error passing response data to ${url}, status: ${callRes.status}`)
+          return false
+        } else {
+          const json = await callRes.json()
+          return json.status
+        }
+      } catch (e) {
+        console.error(`Error making request to: ${url}, error: ${e.message}`)
         return false
       }
     }
