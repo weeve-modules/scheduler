@@ -41,31 +41,35 @@ const sendCommand = async (deviceEUI, command) => {
       },
     },
   }
-  const eUrls = EGRESS_URLS.replace(/ /g, '')
-  const urls = eUrls.split(',')
-  urls.forEach(async url => {
-    if (url) {
-      try {
-        const callRes = await fetch(url, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(payload),
-        })
-        if (!callRes.ok) {
-          console.error(`Error passing response data to ${url}, status: ${callRes.status}`)
+  if (EGRESS_URLS) {
+    const eUrls = EGRESS_URLS.replace(/ /g, '')
+    const urls = eUrls.split(',')
+    urls.forEach(async url => {
+      if (url) {
+        try {
+          const callRes = await fetch(url, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(payload),
+          })
+          if (!callRes.ok) {
+            console.error(`Error passing response data to ${url}, status: ${callRes.status}`)
+            return false
+          } else {
+            const json = await callRes.json()
+            return json.status
+          }
+        } catch (e) {
+          console.error(`Error making request to: ${url}, error: ${e.message}`)
           return false
-        } else {
-          const json = await callRes.json()
-          return json.status
         }
-      } catch (e) {
-        console.error(`Error making request to: ${url}, error: ${e.message}`)
-        return false
       }
-    }
-  })
+    })
+  } else {
+    console.error('EGRESS_URLS is not provided.')
+  }
 }
 
 const isTimeReady = (start, end) => {
