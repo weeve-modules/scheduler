@@ -41,18 +41,35 @@ const sendCommand = async (deviceEUI, command) => {
       },
     },
   }
-  console.log(`Sending ${JSON.stringify(payload)} to ${EGRESS_URLS}`)
-  const res = await fetch(EGRESS_URLS, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(payload),
-  })
-  if (res.ok) {
-    const json = await res.json()
-    return json.status
-  } else return false
+  if (EGRESS_URLS) {
+    const eUrls = EGRESS_URLS.replace(/ /g, '')
+    const urls = eUrls.split(',')
+    urls.forEach(async url => {
+      if (url) {
+        try {
+          const callRes = await fetch(url, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(payload),
+          })
+          if (!callRes.ok) {
+            console.error(`Error passing response data to ${url}, status: ${callRes.status}`)
+            return false
+          } else {
+            const json = await callRes.json()
+            return json.status
+          }
+        } catch (e) {
+          console.error(`Error making request to: ${url}, error: ${e.message}`)
+          return false
+        }
+      }
+    })
+  } else {
+    console.error('EGRESS_URLS is not provided.')
+  }
 }
 
 const isTimeReady = (start, end) => {
@@ -102,9 +119,9 @@ module.exports = async device => {
       // console.log(device.schedule[key].days);
       if (device.schedule[key].days.indexOf(day) !== -1) {
         // console.log(device.schedule[key].slots);
-        const slot_keys = Object.keys(device.schedule[key].slots)
-        for (let i = 0; i < slot_keys.length; i++) {
-          const slot = device.schedule[key].slots[slot_keys[i]]
+        const slotKeys = Object.keys(device.schedule[key].slots)
+        for (let i = 0; i < slotKeys.length; i++) {
+          const slot = device.schedule[key].slots[slotKeys[i]]
           const untilDate = new Date(slot.time)
           // console.log(`slot time: ${untilDate}`);
           if (isTimeReady(new Date(), untilDate)) {
